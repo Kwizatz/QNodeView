@@ -23,7 +23,7 @@ if(COMMAND cmake_policy)
     endif(POLICY CMP0053)
 endif(COMMAND cmake_policy)
 
-project(QNodeView)
+project(QNodeItemView)
 enable_language(CXX)
 enable_language(C)
 find_package(Qt5 COMPONENTS Core Gui Widgets)

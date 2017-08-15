@@ -13,7 +13,22 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+#include <QPainter>
+#include <QLabel>
 #include "QNodeItemView.hpp"
+
+QNodeItemView::QNodeItemView(QWidget * parent, Qt::WindowFlags f)
+{
+	QLabel *label = new QLabel(this);
+	label->setText("Test");
+	label->move(10, 10);
+	label->show();
+	label->setAttribute(Qt::WA_DeleteOnClose);
+}
+
+QNodeItemView::~QNodeItemView()
+{
+}
 
 QRect QNodeItemView::visualRect(const QModelIndex &) const
 {
@@ -56,4 +71,9 @@ void QNodeItemView::setSelection(const QRect &, QItemSelectionModel::SelectionFl
 QRegion QNodeItemView::visualRegionForSelection(const QItemSelection &) const
 {
 	return QRegion(0,0,100,50);
+}
+
+void QNodeItemView::paintEvent(QPaintEvent * event)
+{
+	QWidget::paintEvent(event);
 }

@@ -25,6 +25,8 @@ Q_DECL_EXPORT
 QNodeItemView : public QAbstractItemView
 {
 public:
+	QNodeItemView(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags());
+	virtual ~QNodeItemView();
 	QRect visualRect(const QModelIndex &) const override;
 	void scrollTo(const QModelIndex &,QAbstractItemView::ScrollHint) override;
 	QModelIndex indexAt(const QPoint &) const override;
@@ -34,6 +36,8 @@ public:
 	bool isIndexHidden(const QModelIndex &) const override;
 	void setSelection(const QRect &,QItemSelectionModel::SelectionFlags) override;
 	QRegion visualRegionForSelection(const QItemSelection &) const override;
+protected:
+	void paintEvent(QPaintEvent *event) override;
 private:
 	Q_OBJECT;
 };
