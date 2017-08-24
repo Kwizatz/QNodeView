@@ -35,11 +35,13 @@ set(QNODEVIEW_SRCS
     QNodeView.cpp
     QNodeViewItem.cpp
     QNodeViewItemIO.cpp
+    QNodeViewItemSocket.cpp
     )
 set(QNODEVIEW_HDRS
     QNodeView.h
     QNodeViewItem.h
     QNodeViewItemIO.h
+    QNodeViewItemSocket.h
     )
 
 QT5_WRAP_CPP(QNODEVIEW_MOCS ${QNODEVIEW_HDRS})

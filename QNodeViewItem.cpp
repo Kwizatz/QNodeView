@@ -14,13 +14,18 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 #include "qlayout.h"
+#include "qstyle.h"
+#include "qstyleoption.h"
+#include "qpainter.h"
 #include "QNodeViewItem.h"
 #include "QNodeViewItemIO.h"
 
-QNodeViewItem::QNodeViewItem(QWidget *parent, Qt::WindowFlags f) : QWidget(parent,f)
+QNodeViewItem::QNodeViewItem(QWidget *parent, Qt::WindowFlags f) : QFrame(parent,f)
 {
-	QHBoxLayout *layout = new QHBoxLayout(this);
-	layout->setMargin(0);
+	setFrameStyle(QFrame::StyledPanel|QFrame::Plain);
+	QVBoxLayout *layout = new QVBoxLayout(this);
+	layout->setSizeConstraint(QLayout::SetMinimumSize);
+	layout->setMargin(5);
 	QNodeViewItemIO *label = new QNodeViewItemIO(this);
 	layout->addWidget(label);
 }
@@ -28,3 +33,13 @@ QNodeViewItem::QNodeViewItem(QWidget *parent, Qt::WindowFlags f) : QWidget(paren
 QNodeViewItem::~QNodeViewItem()
 {
 }
+
+#if 0
+void QNodeViewItem::paintEvent(QPaintEvent * event)
+{
+	QStyleOption opt;
+	QPainter p(this);
+	opt.init(this);
+	style()->drawPrimitive(QStyle::PE_FrameDockWidget, &opt, &p, this);
+}
+#endif

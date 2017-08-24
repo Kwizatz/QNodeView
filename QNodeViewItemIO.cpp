@@ -16,13 +16,19 @@ limitations under the License.
 #include "qlayout.h"
 #include "qlabel.h"
 #include "QNodeViewItemIO.h"
+#include "QNodeViewItemSocket.h"
 
 QNodeViewItemIO::QNodeViewItemIO(QWidget *parent, Qt::WindowFlags f) : QWidget(parent,f)
 {
-	QVBoxLayout *layout = new QVBoxLayout(this);
-	layout->setMargin(0);
+	QHBoxLayout *layout = new QHBoxLayout(this);
+	layout->setSizeConstraint(QLayout::SetMinimumSize);
+	layout->setMargin(5);
+	QNodeViewItemSocket *input = new QNodeViewItemSocket(this);
 	QLabel *label = new QLabel("Input/Output",this);
-	layout->addWidget(label);
+	QNodeViewItemSocket *output = new QNodeViewItemSocket(this);
+	layout->addWidget(input,0, Qt::AlignLeft);
+	layout->addWidget(label, 0, Qt::AlignCenter);
+	layout->addWidget(output, 0, Qt::AlignRight);
 }
 
 QNodeViewItemIO::~QNodeViewItemIO()

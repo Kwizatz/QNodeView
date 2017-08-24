@@ -13,19 +13,24 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-#ifndef QNODEVIEWITEM_H
-#define QNODEVIEWITEM_H
-#include "qframe.h"
+#ifndef QNODEVIEWITEMSOCKET_H
+#define QNODEVIEWITEMSOCKET_H
+#include "qwidget.h"
 QT_BEGIN_NAMESPACE
-class QNodeViewItem : public QFrame
+class QNodeViewItemSocket : public QWidget
 {
-    Q_OBJECT
+	Q_OBJECT
+	Q_PROPERTY(QColor socketColor READ socketColor WRITE setSocketColor)
 public:
-	QNodeViewItem(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags());
-	~QNodeViewItem();
+	QNodeViewItemSocket(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags());
+	virtual ~QNodeViewItemSocket();
+	void setSocketColor(const QColor &color);
+	const QColor& socketColor() const;
 signals:
 protected:
-	//void paintEvent(QPaintEvent * event) override;
+    void paintEvent(QPaintEvent * event) override;
+private:
+	QColor mSocketColor;
 };
 QT_END_NAMESPACE
 #endif
