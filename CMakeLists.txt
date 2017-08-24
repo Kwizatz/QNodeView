@@ -23,7 +23,7 @@ if(COMMAND cmake_policy)
     endif(POLICY CMP0053)
 endif(COMMAND cmake_policy)
 
-project(QNodeItemView)
+project(QNodeView)
 enable_language(CXX)
 enable_language(C)
 find_package(Qt5 COMPONENTS Core Gui Widgets)
@@ -31,10 +31,21 @@ include_directories(${Qt5Core_INCLUDE_DIRS}
                     ${Qt5Gui_INCLUDE_DIRS}
                     ${Qt5Widgets_INCLUDE_DIRS})
 
-QT5_WRAP_CPP(QNODEITEMVIEW_MOCS QNodeItemView.hpp)
-add_library(QNodeItemView STATIC ${QNODEITEMVIEW_MOCS} QNodeItemView.cpp QNodeItemView.hpp)
+set(QNODEVIEW_SRCS
+    QNodeView.cpp
+    QNodeViewItem.cpp
+    QNodeViewItemIO.cpp
+    )
+set(QNODEVIEW_HDRS
+    QNodeView.h
+    QNodeViewItem.h
+    QNodeViewItemIO.h
+    )
+
+QT5_WRAP_CPP(QNODEVIEW_MOCS ${QNODEVIEW_HDRS})
+add_library(QNodeView STATIC ${QNODEVIEW_MOCS} ${QNODEVIEW_SRCS} ${QNODEVIEW_HDRS})
 # -DQT_BUILD_GUI_LIB
-set_target_properties(QNodeItemView PROPERTIES COMPILE_FLAGS "-D_CRT_SECURE_NO_WARNINGS")
-target_link_libraries(QNodeItemView ${Qt5Core_LIBRARIES} ${Qt5Gui_LIBRARIES} ${Qt5Widgets_LIBRARIES} ${Qt5WinExtras_LIBRARIES})
+set_target_properties(QNodeView PROPERTIES COMPILE_FLAGS "-D_CRT_SECURE_NO_WARNINGS")
+target_link_libraries(QNodeView ${Qt5Core_LIBRARIES} ${Qt5Gui_LIBRARIES} ${Qt5Widgets_LIBRARIES} ${Qt5WinExtras_LIBRARIES})
 add_executable(Example main.cpp)
-target_link_libraries(Example ${Qt5Core_LIBRARIES} ${Qt5Gui_LIBRARIES} ${Qt5Widgets_LIBRARIES} ${Qt5WinExtras_LIBRARIES} QNodeItemView)
+target_link_libraries(Example ${Qt5Core_LIBRARIES} ${Qt5Gui_LIBRARIES} ${Qt5Widgets_LIBRARIES} ${Qt5WinExtras_LIBRARIES} QNodeView)

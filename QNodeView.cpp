@@ -15,65 +15,65 @@ limitations under the License.
 */
 #include <QPainter>
 #include <QLabel>
-#include "QNodeItemView.hpp"
+#include "QNodeView.h"
+#include "QNodeViewItem.h"
 
-QNodeItemView::QNodeItemView(QWidget * parent, Qt::WindowFlags f)
+QNodeView::QNodeView(QWidget * parent, Qt::WindowFlags f)
 {
-	QLabel *label = new QLabel(this);
-	label->setText("Test");
+	QNodeViewItem *label = new QNodeViewItem(this);
 	label->move(10, 10);
 	label->show();
 	label->setAttribute(Qt::WA_DeleteOnClose);
 }
 
-QNodeItemView::~QNodeItemView()
+QNodeView::~QNodeView()
 {
 }
 
-QRect QNodeItemView::visualRect(const QModelIndex &) const
+QRect QNodeView::visualRect(const QModelIndex &) const
 {
 	return QRect(0,0,100,50);
 }
 
-void QNodeItemView::scrollTo(const QModelIndex &, QAbstractItemView::ScrollHint)
+void QNodeView::scrollTo(const QModelIndex &, QAbstractItemView::ScrollHint)
 {
 }
 
-QModelIndex QNodeItemView::indexAt(const QPoint &) const
-{
-	return QModelIndex();
-}
-
-QModelIndex QNodeItemView::moveCursor(QAbstractItemView::CursorAction, Qt::KeyboardModifiers)
+QModelIndex QNodeView::indexAt(const QPoint &) const
 {
 	return QModelIndex();
 }
 
-int QNodeItemView::horizontalOffset(void) const
+QModelIndex QNodeView::moveCursor(QAbstractItemView::CursorAction, Qt::KeyboardModifiers)
+{
+	return QModelIndex();
+}
+
+int QNodeView::horizontalOffset(void) const
 {
 	return 0;
 }
 
-int QNodeItemView::verticalOffset(void) const
+int QNodeView::verticalOffset(void) const
 {
 	return 0;
 }
 
-bool QNodeItemView::isIndexHidden(const QModelIndex &) const
+bool QNodeView::isIndexHidden(const QModelIndex &) const
 {
 	return false;
 }
 
-void QNodeItemView::setSelection(const QRect &, QItemSelectionModel::SelectionFlags)
+void QNodeView::setSelection(const QRect &, QItemSelectionModel::SelectionFlags)
 {
 }
 
-QRegion QNodeItemView::visualRegionForSelection(const QItemSelection &) const
+QRegion QNodeView::visualRegionForSelection(const QItemSelection &) const
 {
 	return QRegion(0,0,100,50);
 }
 
-void QNodeItemView::paintEvent(QPaintEvent * event)
+void QNodeView::paintEvent(QPaintEvent * event)
 {
 	QWidget::paintEvent(event);
 }

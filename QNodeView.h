@@ -13,20 +13,20 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-#ifndef QNODEITEMVIEW_HPP
-#define QNODEITEMVIEW_HPP
-#include <QAbstractItemView>
+#ifndef QNODEVIEW_H
+#define QNODEVIEW_H
+#include "qabstractitemview.h"
 QT_BEGIN_NAMESPACE
 class
 #if 0
 /*Q_GUI_EXPORT*/
 Q_DECL_EXPORT
 #endif
-QNodeItemView : public QAbstractItemView
+QNodeView : public QAbstractItemView
 {
 public:
-	QNodeItemView(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags());
-	virtual ~QNodeItemView();
+	QNodeView(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags());
+	virtual ~QNodeView();
 	QRect visualRect(const QModelIndex &) const override;
 	void scrollTo(const QModelIndex &,QAbstractItemView::ScrollHint) override;
 	QModelIndex indexAt(const QPoint &) const override;

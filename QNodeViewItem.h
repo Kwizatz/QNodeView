@@ -13,17 +13,17 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-#include <cstdio>
-#include <iostream>
-#include <QApplication>
-#include <QMessageBox>
-#include "QNodeView.h"
-int main ( int argc, char *argv[] )
+#ifndef QNODEVIEWITEM_H
+#define QNODEVIEWITEM_H
+#include "qwidget.h"
+QT_BEGIN_NAMESPACE
+class QNodeViewItem : public QWidget
 {
-    QApplication application ( argc, argv );
-    QNodeView view;
-    view.setWindowTitle("NodeView");
-    view.resize(800, 600);
-    view.show();
-    return application.exec();
-}
+    Q_OBJECT
+public:
+	QNodeViewItem(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags());
+	~QNodeViewItem();
+signals:
+};
+QT_END_NAMESPACE
+#endif
