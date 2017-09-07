@@ -32,7 +32,7 @@ QNodeView::~QNodeView()
 
 QRect QNodeView::visualRect(const QModelIndex &) const
 {
-	return QRect(0,0,100,50);
+	return QRect(0,0,0,0);
 }
 
 void QNodeView::scrollTo(const QModelIndex &, QAbstractItemView::ScrollHint)
@@ -70,10 +70,11 @@ void QNodeView::setSelection(const QRect &, QItemSelectionModel::SelectionFlags)
 
 QRegion QNodeView::visualRegionForSelection(const QItemSelection &) const
 {
-	return QRegion(0,0,100,50);
+	return QRegion(0,0,0,0);
 }
 
 void QNodeView::paintEvent(QPaintEvent * event)
 {
 	QWidget::paintEvent(event);
+	QPainter(this);
 }
