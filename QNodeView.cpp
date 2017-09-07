@@ -15,10 +15,14 @@ limitations under the License.
 */
 #include <QPainter>
 #include <QLabel>
+#include <QPaintEvent>
 #include "QNodeView.h"
 #include "QNodeViewItem.h"
 
-QNodeView::QNodeView(QWidget * parent, Qt::WindowFlags f)
+QNodeView::QNodeView(QWidget * parent)  : QAbstractItemView(parent),
+	mBackgroundColor(0xdc, 0xdc, 0xdc),
+	mPrimaryGridColor(0xd6,0x9d,0x85),
+	mSecondaryGridColor(0xaa,0xaa,0xaa)
 {
 	QNodeViewItem *label = new QNodeViewItem(this);
 	label->move(10, 10);
@@ -73,8 +77,42 @@ QRegion QNodeView::visualRegionForSelection(const QItemSelection &) const
 	return QRegion(0,0,0,0);
 }
 
+const QColor & QNodeView::backgroundColor() const
+{
+	return mBackgroundColor;
+}
+
+const QColor & QNodeView::primaryGridColor() const
+{
+	return mPrimaryGridColor;
+}
+
+const QColor & QNodeView::secondaryGridColor() const
+{
+	return mSecondaryGridColor;
+}
+
+void QNodeView::setBackgroundColor(const QColor & color)
+{
+	mBackgroundColor = color;
+}
+
+void QNodeView::setPrimaryGridColor(const QColor & color)
+{
+	mPrimaryGridColor = color;
+}
+
+void QNodeView::setSecondaryGridColor(const QColor & color)
+{
+	mSecondaryGridColor = color;
+}
+
 void QNodeView::paintEvent(QPaintEvent * event)
 {
-	QWidget::paintEvent(event);
-	QPainter(this);
+	QPainter painter(viewport());
+	painter.setBrush(mBackgroundColor);
+	painter.drawRects(event->region().rects());
+	painter.setPen(mPrimaryGridColor);
+	painter.drawLine(QPointF(width() / 2, 0), QPointF(width() / 2, height()));
+	painter.drawLine(QPointF(0,height() / 2), QPointF(width(), height()/2));
 }

@@ -25,7 +25,7 @@ Q_DECL_EXPORT
 QNodeView : public QAbstractItemView
 {
 public:
-	QNodeView(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags());
+	QNodeView(QWidget *parent = Q_NULLPTR);
 	virtual ~QNodeView();
 	QRect visualRect(const QModelIndex &) const override;
 	void scrollTo(const QModelIndex &,QAbstractItemView::ScrollHint) override;
@@ -36,10 +36,22 @@ public:
 	bool isIndexHidden(const QModelIndex &) const override;
 	void setSelection(const QRect &,QItemSelectionModel::SelectionFlags) override;
 	QRegion visualRegionForSelection(const QItemSelection &) const override;
+	const QColor& backgroundColor() const;
+	const QColor& primaryGridColor() const;
+	const QColor& secondaryGridColor() const;
+	void setBackgroundColor(const QColor& color);
+	void setPrimaryGridColor(const QColor& color);
+	void setSecondaryGridColor(const QColor& color);
 protected:
 	void paintEvent(QPaintEvent *event) override;
 private:
 	Q_OBJECT;
+	Q_PROPERTY(QColor backgroundColor READ backgroundColor WRITE setBackgroundColor);
+	Q_PROPERTY(QColor primaryGridColor READ primaryGridColor WRITE setPrimaryGridColor);
+	Q_PROPERTY(QColor secondaryGridColor READ secondaryGridColor WRITE setSecondaryGridColor);
+	QColor mBackgroundColor;
+	QColor mPrimaryGridColor;
+	QColor mSecondaryGridColor;
 };
 QT_END_NAMESPACE
 #endif
