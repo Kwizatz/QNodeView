@@ -33,12 +33,14 @@ include_directories(${Qt5Core_INCLUDE_DIRS}
 
 set(QNODEVIEW_SRCS
     QNodeView.cpp
+    QNodeModel.cpp
     QNodeViewItem.cpp
     QNodeViewItemIO.cpp
     QNodeViewItemSocket.cpp
     )
 set(QNODEVIEW_HDRS
     QNodeView.h
+    QNodeModel.h
     QNodeViewItem.h
     QNodeViewItemIO.h
     QNodeViewItemSocket.h

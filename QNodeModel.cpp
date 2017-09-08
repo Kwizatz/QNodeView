@@ -13,19 +13,35 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-#include <cstdio>
-#include <iostream>
-#include <QApplication>
-#include <QMessageBox>
-#include "QNodeView.h"
 #include "QNodeModel.h"
-int main ( int argc, char *argv[] )
+QNodeModel::QNodeModel(QObject * parent)  : QAbstractItemModel(parent)
 {
-    QApplication application ( argc, argv );
-    QNodeView view;
-	QNodeModel model;
-    view.setWindowTitle("NodeView");
-    view.resize(800, 600);
-    view.show();
-    return application.exec();
+}
+QNodeModel::~QNodeModel()
+{
+}
+
+QModelIndex QNodeModel::index(int row, int column, const QModelIndex & parent) const
+{
+	return QModelIndex();
+}
+
+QModelIndex QNodeModel::parent(const QModelIndex & index) const
+{
+	return QModelIndex();
+}
+
+int QNodeModel::rowCount(const QModelIndex & parent) const
+{
+	return 0;
+}
+
+int QNodeModel::columnCount(const QModelIndex & parent) const
+{
+	return 0;
+}
+
+QVariant QNodeModel::data(const QModelIndex & index, int role) const
+{
+	return QVariant();
 }
