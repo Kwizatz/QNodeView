@@ -1,0 +1,34 @@
+{
+    "configurations": [
+        {
+            "name": "Windows",
+            "intelliSenseMode": "gcc-x64",
+            "compilerPath": "C:/msys64/mingw64/bin/g++.exe",
+            "includePath": [
+                "C:/msys64/mingw64/include/",
+"C:/msys64/mingw64/include/QtCore",
+"C:/msys64/mingw64/share/qt5//mkspecs/win32-g++",
+"C:/msys64/mingw64/include/QtGui",
+"C:/msys64/mingw64/include/QtWidgets",
+"C:/msys64/mingw64/include",
+"C:/Code/AeonEngine/mingw64/engine",
+"C:/Code/AeonEngine/mingw64/engine/renderers/opengl",
+"C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../include/c++/12.1.0",
+"C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../include/c++/12.1.0/x86_64-w64-mingw32",
+"C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../include/c++/12.1.0/backward",
+"C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/include",
+"C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../include",
+"C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/include-fixed",
+                "C:/Code/AeonEngine/include",
+                "C:/Code/AeonEngine/include/aeongames",
+                "C:/Code/AeonEngine/engine/include",
+                "C:/Code/AeonEngine/tools/worldeditor",
+                "C:/Code/AeonEngine/mingw64/tools/worldeditor"
+            ],
+            "defines": [],
+            "cStandard": "c11",
+            "cppStandard": "c++17"
+        }
+    ],
+    "version": 4
+}

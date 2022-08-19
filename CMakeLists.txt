@@ -1,4 +1,4 @@
-# Copyright (C) 2017 Rodrigo Jose Hernandez Cordoba
+# Copyright (C) 2017,2022 Rodrigo Jose Hernandez Cordoba
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -30,16 +30,21 @@ find_package(Qt5 COMPONENTS Core Gui Widgets)
 include_directories(${Qt5Core_INCLUDE_DIRS}
                     ${Qt5Gui_INCLUDE_DIRS}
                     ${Qt5Widgets_INCLUDE_DIRS})
-
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DNOMINMAX -Wall -Werror -Wfatal-errors -Wpsabi -O0 -ggdb")
+    set(CMAKE_CXX_FLAGS_RELEASE
+      "${CMAKE_CXX_FLAGS_RELEASE} -DNOMINMAX -Wall -Werror -Wfatal-errors -Wpsabi -O3 -fomit-frame-pointer")
+endif()
+  
 set(QNODEVIEW_SRCS
-    QNodeView.cpp
+    QNodeScene.cpp
     QNodeModel.cpp
     QNodeViewItem.cpp
     QNodeViewItemIO.cpp
     QNodeViewItemSocket.cpp
     )
 set(QNODEVIEW_HDRS
-    QNodeView.h
+    QNodeScene.h
     QNodeModel.h
     QNodeViewItem.h
     QNodeViewItemIO.h
@@ -48,7 +53,6 @@ set(QNODEVIEW_HDRS
 
 QT5_WRAP_CPP(QNODEVIEW_MOCS ${QNODEVIEW_HDRS})
 add_library(QNodeView STATIC ${QNODEVIEW_MOCS} ${QNODEVIEW_SRCS} ${QNODEVIEW_HDRS})
-# -DQT_BUILD_GUI_LIB
 set_target_properties(QNodeView PROPERTIES COMPILE_FLAGS "-D_CRT_SECURE_NO_WARNINGS")
 target_link_libraries(QNodeView ${Qt5Core_LIBRARIES} ${Qt5Gui_LIBRARIES} ${Qt5Widgets_LIBRARIES} ${Qt5WinExtras_LIBRARIES})
 add_executable(Example main.cpp)

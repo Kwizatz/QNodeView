@@ -17,15 +17,16 @@ limitations under the License.
 #include <iostream>
 #include <QApplication>
 #include <QMessageBox>
-#include "QNodeView.h"
-#include "QNodeModel.h"
+#include <QGraphicsView>
+#include "QNodeScene.h"
+
 int main ( int argc, char *argv[] )
 {
     QApplication application ( argc, argv );
-    QNodeView view;
-	QNodeModel model;
+    QGraphicsView view;
     view.setWindowTitle("NodeView");
     view.resize(800, 600);
     view.show();
+    view.setScene(new QNodeScene());
     return application.exec();
 }
