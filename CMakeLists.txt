@@ -37,6 +37,7 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
   
 set(QNODEVIEW_SRCS
+    QNodeView.cpp
     QNodeScene.cpp
     QNodeModel.cpp
     QNodeViewItem.cpp
@@ -44,6 +45,7 @@ set(QNODEVIEW_SRCS
     QNodeViewItemSocket.cpp
     )
 set(QNODEVIEW_HDRS
+    QNodeView.h
     QNodeScene.h
     QNodeModel.h
     QNodeViewItem.h
@@ -55,5 +57,5 @@ QT5_WRAP_CPP(QNODEVIEW_MOCS ${QNODEVIEW_HDRS})
 add_library(QNodeView STATIC ${QNODEVIEW_MOCS} ${QNODEVIEW_SRCS} ${QNODEVIEW_HDRS})
 set_target_properties(QNodeView PROPERTIES COMPILE_FLAGS "-D_CRT_SECURE_NO_WARNINGS")
 target_link_libraries(QNodeView ${Qt5Core_LIBRARIES} ${Qt5Gui_LIBRARIES} ${Qt5Widgets_LIBRARIES} ${Qt5WinExtras_LIBRARIES})
-add_executable(Example main.cpp)
+add_executable(Example Main.cpp)
 target_link_libraries(Example ${Qt5Core_LIBRARIES} ${Qt5Gui_LIBRARIES} ${Qt5Widgets_LIBRARIES} ${Qt5WinExtras_LIBRARIES} QNodeView)

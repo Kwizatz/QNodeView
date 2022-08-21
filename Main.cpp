@@ -18,15 +18,50 @@ limitations under the License.
 #include <QApplication>
 #include <QMessageBox>
 #include <QGraphicsView>
+#include <QGraphicsRectItem>
+#include<QGraphicsProxyWidget>
+#include <QPushButton>
+#include <QTextEdit>
+#include "QNodeView.h"
 #include "QNodeScene.h"
+
+void AddDebugContent(QGraphicsScene* nodeScene)
+{
+	QBrush greenBrush{Qt::green};
+	QPen outlinePen{QPen(Qt::black)};
+	outlinePen.setWidth(2);
+
+	QGraphicsRectItem* rect {nodeScene->addRect(-100, -100, 80, 100, outlinePen, greenBrush)};
+	rect->setFlag(QGraphicsItem::ItemIsMovable);
+
+	QGraphicsTextItem* text{nodeScene->addText("This is my Awesome text!", QFont("Noto"))};
+	text->setFlag(QGraphicsItem::ItemIsSelectable);
+	text->setFlag(QGraphicsItem::ItemIsMovable);
+	text->setDefaultTextColor(QColor::fromRgbF(1.0, 1.0, 1.0));
+
+	QPushButton* widget1{new QPushButton("Hello World")};
+	QGraphicsProxyWidget* proxy1{nodeScene->addWidget(widget1)};
+	proxy1->setFlag(QGraphicsItem::ItemIsMovable);
+	proxy1->setPos(0, 30);
+
+	QTextEdit* widget2{new QTextEdit()};
+	QGraphicsProxyWidget* proxy2{nodeScene->addWidget(widget2)};
+	proxy2->setFlag(QGraphicsItem::ItemIsSelectable);
+	proxy2->setPos(0, 60);
+
+	QGraphicsLineItem* line{nodeScene->addLine(-200, -200, 400, -100, outlinePen)};
+	line->setFlag(QGraphicsItem::ItemIsMovable);
+	line->setFlag(QGraphicsItem::ItemIsSelectable);
+}
 
 int main ( int argc, char *argv[] )
 {
     QApplication application ( argc, argv );
-    QGraphicsView view;
+    QNodeView view;
     view.setWindowTitle("NodeView");
     view.resize(800, 600);
     view.show();
     view.setScene(new QNodeScene());
+    AddDebugContent(view.scene());
     return application.exec();
 }
