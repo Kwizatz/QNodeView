@@ -23,7 +23,15 @@ public:
 	QNodeView(QGraphicsScene *scene, QWidget *parent = nullptr);
 	QNodeView(QWidget *parent = nullptr);
 	~QNodeView() override;
+	void mousePressEvent(QMouseEvent *event) override;
+	void mouseReleaseEvent(QMouseEvent *event) override;
 private:
 	Q_OBJECT;
+	void middleMouseButtonPress(QMouseEvent* event);
+	void middleMouseButtonRelease(QMouseEvent* event);
+	void leftMouseButtonPress(QMouseEvent* event);
+	void leftMouseButtonRelease(QMouseEvent* event);
+	void rightMouseButtonPress(QMouseEvent* event);
+	void rightMouseButtonRelease(QMouseEvent* event);
 };
 #endif
